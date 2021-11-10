@@ -51,6 +51,9 @@ import { InvitePopoverContainer } from "./room/InvitePopoverContainer";
 import { MoreMenuPopoverButton, CompactMoreMenuButton, MoreMenuContextProvider } from "./room/MoreMenuPopover";
 import { ChatSidebarContainer, ChatContextProvider, ChatToolbarButtonContainer } from "./room/ChatSidebarContainer";
 import { ContentMenu, PeopleMenuButton, ObjectsMenuButton } from "./room/ContentMenu";
+
+import { ContentMenuTest, RoomMenuTestButton, AngleMenuTestButton } from "./room/Test-uitwerking/ContentMenuTest";
+
 import { ReactComponent as CameraIcon } from "./icons/Camera.svg";
 import { ReactComponent as AvatarIcon } from "./icons/Avatar.svg";
 import { ReactComponent as AddIcon } from "./icons/Add.svg";
@@ -73,6 +76,9 @@ import { PeopleSidebarContainer, userFromPresence } from "./room/PeopleSidebarCo
 import { ObjectListProvider } from "./room/useObjectList";
 import { ObjectsSidebarContainer } from "./room/ObjectsSidebarContainer";
 import { ObjectMenuContainer } from "./room/ObjectMenuContainer";
+
+import { WaypointSidebarContainer } from "./room/Test-uitwerking/WaypointSideBarContainer";
+
 import { useCssBreakpoints } from "react-use-css-breakpoints";
 import { PlacePopoverContainer } from "./room/PlacePopoverContainer";
 import { SharePopoverContainer } from "./room/SharePopoverContainer";
@@ -111,6 +117,10 @@ async function grantedMicLabels() {
 const isMobile = AFRAME.utils.device.isMobile();
 const isMobileVR = AFRAME.utils.device.isMobileVR();
 const AUTO_EXIT_TIMER_SECONDS = 10;
+
+var _currentRoom = "Room1";
+var _counterRoom = 1;
+var _currentAngle = "Angle1";
 
 class UIRoot extends Component {
   willCompileAndUploadMaterials = false;
@@ -1079,6 +1089,11 @@ class UIRoot extends Component {
     const canCloseRoom = this.props.hubChannel && !!this.props.hubChannel.canOrWillIfCreator("close_hub");
     const isModerator = this.props.hubChannel && this.props.hubChannel.canOrWillIfCreator("kick_users") && !isMobileVR;
 
+    function getLocationURL(){
+      var URL = window.location.href.split("#")[0] + "#Way-Point-" + _currentRoom + "-" + _currentAngle;
+      return URL;
+    }
+
     const moreMenu = [
       {
         id: "user",
@@ -1359,6 +1374,37 @@ class UIRoot extends Component {
                           presenceCount={this.state.presenceCount}
                         />
                       </ContentMenu>
+                    )}
+                     {(entered) && (
+                      <ContentMenuTest>
+                        <RoomMenuTestButton
+                          active={this.state.sidebarId === "Rooms"}
+                          onClick={() => {
+                             //this.toggleSidebar("Rooms")
+                              _counterRoom = _counterRoom + 1;
+                              if(_counterRoom > 4){
+                                _counterRoom = 1;
+                              }
+                              _currentRoom = "Room" + _counterRoom;
+                              window.history.replaceState(null, null, getLocationURL());
+                            } 
+                          }
+                          />
+                        
+                        <AngleMenuTestButton
+                          active={this.state.sidebarId === "Angles"}
+                          onClick={() => {
+                            if(_currentAngle === "Angle1"){
+                              _currentAngle = "Angle2";
+                            } else {
+                              _currentAngle = "Angle1";
+                            }
+                            window.history.replaceState(null, null, getLocationURL());
+                          }
+                          //window.history.replaceState(null, null, window.location.href.split("#")[0] + "#Way-Point-test-3")
+                        }
+                        />
+                      </ContentMenuTest>
                     )}
                     {!entered && !streaming && !isMobile && streamerName && <SpectatingLabel name={streamerName} />}
                     {this.props.activeObject && (

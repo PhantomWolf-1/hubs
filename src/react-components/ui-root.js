@@ -52,7 +52,7 @@ import { MoreMenuPopoverButton, CompactMoreMenuButton, MoreMenuContextProvider }
 import { ChatSidebarContainer, ChatContextProvider, ChatToolbarButtonContainer } from "./room/ChatSidebarContainer";
 import { ContentMenu, PeopleMenuButton, ObjectsMenuButton } from "./room/ContentMenu";
 
-import { ContentMenuTest, RoomMenuTestButton, AngleMenuTestButton } from "./room/Test-uitwerking/ContentMenuTest";
+import { ContentMenuTest, RoomMenuTestButton, AngleMenuTestButton, TeleportButton } from "./room/Test-uitwerking/ContentMenuTest";
 
 import { ReactComponent as CameraIcon } from "./icons/Camera.svg";
 import { ReactComponent as AvatarIcon } from "./icons/Avatar.svg";
@@ -1377,7 +1377,31 @@ class UIRoot extends Component {
                     )}
                      {(entered) && (
                       <ContentMenuTest>
-                        <RoomMenuTestButton
+                        <TeleportButton
+                        name="Angle 1"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 1");
+                          }
+                        }
+                        />
+
+                        <TeleportButton
+                        name="Angle 2"                    
+                        onClick = {()=> {
+                            console.log("Clicked on angle 2");
+                          }
+                        }
+                        />
+
+                        <TeleportButton 
+                        name="Angle 3"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 3");
+                          }
+                        }
+                        />
+
+                        {/* <RoomMenuTestButton
                           active={this.state.sidebarId === "Rooms"}
                           onClick={() => {
                              //this.toggleSidebar("Rooms")
@@ -1403,7 +1427,7 @@ class UIRoot extends Component {
                           }
                           //window.history.replaceState(null, null, window.location.href.split("#")[0] + "#Way-Point-test-3")
                         }
-                        />
+                        /> */}
                       </ContentMenuTest>
                     )}
                     {!entered && !streaming && !isMobile && streamerName && <SpectatingLabel name={streamerName} />}

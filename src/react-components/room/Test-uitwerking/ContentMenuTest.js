@@ -20,6 +20,21 @@ ContentMenuTestButton.propTypes = {
   active: PropTypes.bool
 };
 
+function FormattedMessageFixed(props){
+  return <FormattedMessage {...props} />;
+} 
+
+export function TeleportButton(props){
+  return (
+    <button className={className(styles.contentMenuButton, {[styles.active]: props.active})} 
+    onClick={props.onClick}>
+      <PeopleIcon />
+      <span>
+        <FormattedMessageFixed id="content-menu.teleport-menu-button" defaultMessage={props.name} />
+      </span>
+    </button>
+  );
+}
 
 
 export function RoomMenuTestButton(props) {

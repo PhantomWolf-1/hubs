@@ -1359,7 +1359,7 @@ class UIRoot extends Component {
                   <>
                     {!this.state.dialog && renderEntryFlow ? entryDialog : undefined}
                     {!this.props.selectedObject && <CompactMoreMenuButton />}
-                    {(!this.props.selectedObject ||
+                    {/* {(!this.props.selectedObject ||
                       (this.props.breakpoint !== "sm" && this.props.breakpoint !== "md")) && (
                       <ContentMenu>
                         {showObjectList && (
@@ -1374,13 +1374,14 @@ class UIRoot extends Component {
                           presenceCount={this.state.presenceCount}
                         />
                       </ContentMenu>
-                    )}
+                    )} */}
                      {(entered) && (
                       <ContentMenuTest>
                         <TeleportButton
                         name="Angle 1"
                         onClick = {()=> {
                             console.log("Clicked on angle 1");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-begin")
                           }
                         }
                         />
@@ -1389,6 +1390,7 @@ class UIRoot extends Component {
                         name="Angle 2"                    
                         onClick = {()=> {
                             console.log("Clicked on angle 2");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-LeftSide")
                           }
                         }
                         />
@@ -1397,9 +1399,58 @@ class UIRoot extends Component {
                         name="Angle 3"
                         onClick = {()=> {
                             console.log("Clicked on angle 3");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-Head")
                           }
                         }
                         />
+
+                        <TeleportButton 
+                        name="Angle 4"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 4");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-FrontSide")
+                          }
+                        }
+                        />
+
+                        <TeleportButton 
+                        name="Angle 5"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 5");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-RightSide")
+                          }
+                        }
+                        />
+
+                        <TeleportButton 
+                        name="Angle 6"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 6");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-Giraffe")
+                          }
+                        }
+                        />
+
+                        <TeleportButton 
+                        name="Angle 7"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 7");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-InsideBack")
+                          }
+                        }
+                        />
+
+                        <TeleportButton 
+                        name="Angle 8"
+                        onClick = {()=> {
+                            console.log("Clicked on angle 8");
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-InsideFront")
+                          }
+                        }
+                        />
+
+
+                        
 
                         {/* <RoomMenuTestButton
                           active={this.state.sidebarId === "Rooms"}
@@ -1570,91 +1621,91 @@ class UIRoot extends Component {
                   )
                 }
                 modal={this.state.dialog}
-                toolbarLeft={
-                  <InvitePopoverContainer
-                    hub={this.props.hub}
-                    hubChannel={this.props.hubChannel}
-                    scene={this.props.scene}
-                  />
-                }
-                toolbarCenter={
-                  <>
-                    {watching && (
-                      <>
-                        <ToolbarButton
-                          icon={<EnterIcon />}
-                          label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="Join Room" />}
-                          preset="accept"
-                          onClick={() => this.setState({ watching: false })}
-                        />
-                        {enableSpectateVRButton && (
-                          <ToolbarButton
-                            icon={<VRIcon />}
-                            preset="accent5"
-                            label={
-                              <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="Spectate in VR" />
-                            }
-                            onClick={() => this.props.scene.enterVR()}
-                          />
-                        )}
-                      </>
-                    )}
-                    {entered && (
-                      <>
-                        <VoiceButtonContainer
-                          scene={this.props.scene}
-                          microphoneEnabled={this.mediaDevicesManager.isMicShared}
-                        />
-                        <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
-                        <PlacePopoverContainer
-                          scene={this.props.scene}
-                          hubChannel={this.props.hubChannel}
-                          mediaSearchStore={this.props.mediaSearchStore}
-                          showNonHistoriedDialog={this.showNonHistoriedDialog}
-                        />
-                        {this.props.hubChannel.can("spawn_emoji") && <ReactionPopoverContainer />}
-                      </>
-                    )}
-                    <ChatToolbarButtonContainer onClick={() => this.toggleSidebar("chat")} />
-                    {entered &&
-                      isMobileVR && (
-                        <ToolbarButton
-                          className={styleUtils.hideLg}
-                          icon={<VRIcon />}
-                          preset="accept"
-                          label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
-                          onClick={() => exit2DInterstitialAndEnterVR(true)}
-                        />
-                      )}
-                  </>
-                }
-                toolbarRight={
-                  <>
-                    {entered &&
-                      isMobileVR && (
-                        <ToolbarButton
-                          icon={<VRIcon />}
-                          preset="accept"
-                          label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
-                          onClick={() => exit2DInterstitialAndEnterVR(true)}
-                        />
-                      )}
-                    {entered && (
-                      <ToolbarButton
-                        icon={<LeaveIcon />}
-                        label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
-                        preset="cancel"
-                        onClick={() => {
-                          this.showNonHistoriedDialog(LeaveRoomModal, {
-                            destinationUrl: "/",
-                            reason: LeaveReason.leaveRoom
-                          });
-                        }}
-                      />
-                    )}
-                    <MoreMenuPopoverButton menu={moreMenu} />
-                  </>
-                }
+                // toolbarLeft={
+                //   <InvitePopoverContainer
+                //     hub={this.props.hub}
+                //     hubChannel={this.props.hubChannel}
+                //     scene={this.props.scene}
+                //   />
+                // }
+                // toolbarCenter={
+                //   <>
+                //     {watching && (
+                //       <>
+                //         <ToolbarButton
+                //           icon={<EnterIcon />}
+                //           label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="Join Room" />}
+                //           preset="accept"
+                //           onClick={() => this.setState({ watching: false })}
+                //         />
+                //         {enableSpectateVRButton && (
+                //           <ToolbarButton
+                //             icon={<VRIcon />}
+                //             preset="accent5"
+                //             label={
+                //               <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="Spectate in VR" />
+                //             }
+                //             onClick={() => this.props.scene.enterVR()}
+                //           />
+                //         )}
+                //       </>
+                //     )}
+                //     {entered && (
+                //       <>
+                //         <VoiceButtonContainer
+                //           scene={this.props.scene}
+                //           microphoneEnabled={this.mediaDevicesManager.isMicShared}
+                //         />
+                //         <SharePopoverContainer scene={this.props.scene} hubChannel={this.props.hubChannel} />
+                //         <PlacePopoverContainer
+                //           scene={this.props.scene}
+                //           hubChannel={this.props.hubChannel}
+                //           mediaSearchStore={this.props.mediaSearchStore}
+                //           showNonHistoriedDialog={this.showNonHistoriedDialog}
+                //         />
+                //         {this.props.hubChannel.can("spawn_emoji") && <ReactionPopoverContainer />}
+                //       </>
+                //     )}
+                //     <ChatToolbarButtonContainer onClick={() => this.toggleSidebar("chat")} />
+                //     {entered &&
+                //       isMobileVR && (
+                //         <ToolbarButton
+                //           className={styleUtils.hideLg}
+                //           icon={<VRIcon />}
+                //           preset="accept"
+                //           label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
+                //           onClick={() => exit2DInterstitialAndEnterVR(true)}
+                //         />
+                //       )}
+                //   </>
+                // }
+                // toolbarRight={
+                //   <>
+                //     {entered &&
+                //       isMobileVR && (
+                //         <ToolbarButton
+                //           icon={<VRIcon />}
+                //           preset="accept"
+                //           label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
+                //           onClick={() => exit2DInterstitialAndEnterVR(true)}
+                //         />
+                //       )}
+                //     {entered && (
+                //       <ToolbarButton
+                //         icon={<LeaveIcon />}
+                //         label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
+                //         preset="cancel"
+                //         onClick={() => {
+                //           this.showNonHistoriedDialog(LeaveRoomModal, {
+                //             destinationUrl: "/",
+                //             reason: LeaveReason.leaveRoom
+                //           });
+                //         }}
+                //       />
+                //     )}
+                //     <MoreMenuPopoverButton menu={moreMenu} />
+                //   </>
+                // }
               />
             )}
           </div>

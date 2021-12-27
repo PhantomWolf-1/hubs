@@ -5,6 +5,7 @@ import { joinChildren } from "../../misc/joinChildren";
 import styles from "./ContentMenuTest.scss";
 import { ReactComponent as ObjectsIcon } from "../../icons/Objects.svg";
 import { ReactComponent as PeopleIcon } from "../../icons/People.svg";
+import {ReactComponent as CameraIcon} from "../../icons/Camera.svg"
 import { FormattedMessage } from "react-intl";
 
 export function ContentMenuTestButton({ active, children, ...props }) {
@@ -28,7 +29,7 @@ export function TeleportButton(props){
   return (
     <button className={className(styles.contentMenuButton, {[styles.active]: props.active})} 
     onClick={props.onClick}>
-      <PeopleIcon />
+      <CameraIcon />
       <span>
         <FormattedMessageFixed id="content-menu.teleport-menu-button" defaultMessage={props.name} />
       </span>

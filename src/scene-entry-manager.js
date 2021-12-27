@@ -319,6 +319,7 @@ export default class SceneEntryManager {
     this.scene.addEventListener("unpinned", e => handlePinEvent(e, false));
 
     this.scene.addEventListener("object_spawned", e => {
+      consolo.log(e);
       this.hubChannel.sendObjectSpawnedEvent(e.detail.objectType);
     });
 

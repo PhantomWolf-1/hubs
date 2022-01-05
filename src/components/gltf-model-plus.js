@@ -504,7 +504,7 @@ class GLTFHubsTextureBasisExtension {
 export async function loadGLTF(src, contentType, onProgress, jsonPreprocessor) {
   let gltfUrl = src;
   let fileMap;
-
+  console.log("test");
   if (contentType && (contentType.includes("model/gltf+zip") || contentType.includes("application/x-zip-compressed"))) {
     fileMap = await extractZipFile(gltfUrl);
     gltfUrl = fileMap["scene.gtlf"];

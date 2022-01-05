@@ -1390,7 +1390,7 @@ class UIRoot extends Component {
                         name="Angle 2"                    
                         onClick = {()=> {
                             console.log("Clicked on angle 2");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-LeftSide")
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-head")
                           }
                         }
                         />
@@ -1399,7 +1399,7 @@ class UIRoot extends Component {
                         name="Angle 3"
                         onClick = {()=> {
                             console.log("Clicked on angle 3");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-Head")
+                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-InsideFront")
                           }
                         }
                         />
@@ -1408,47 +1408,10 @@ class UIRoot extends Component {
                         name="Angle 4"
                         onClick = {()=> {
                             console.log("Clicked on angle 4");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-FrontSide")
-                          }
-                        }
-                        />
-
-                        <TeleportButton 
-                        name="Angle 5"
-                        onClick = {()=> {
-                            console.log("Clicked on angle 5");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-RightSide")
-                          }
-                        }
-                        />
-
-                        <TeleportButton 
-                        name="Angle 6"
-                        onClick = {()=> {
-                            console.log("Clicked on angle 6");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-Giraffe")
-                          }
-                        }
-                        />
-
-                        <TeleportButton 
-                        name="Angle 7"
-                        onClick = {()=> {
-                            console.log("Clicked on angle 7");
                             window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-InsideBack")
                           }
                         }
                         />
-
-                        <TeleportButton 
-                        name="Angle 8"
-                        onClick = {()=> {
-                            console.log("Clicked on angle 8");
-                            window.history.replaceState(null, null, window.location.href.split("#")[0] + "#WP-InsideFront")
-                          }
-                        }
-                        />
-
 
                         
 
@@ -1628,29 +1591,31 @@ class UIRoot extends Component {
                 //     scene={this.props.scene}
                 //   />
                 // }
-                // toolbarCenter={
-                //   <>
-                //     {watching && (
-                //       <>
-                //         <ToolbarButton
-                //           icon={<EnterIcon />}
-                //           label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="Join Room" />}
-                //           preset="accept"
-                //           onClick={() => this.setState({ watching: false })}
-                //         />
-                //         {enableSpectateVRButton && (
-                //           <ToolbarButton
-                //             icon={<VRIcon />}
-                //             preset="accent5"
-                //             label={
-                //               <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="Spectate in VR" />
-                //             }
-                //             onClick={() => this.props.scene.enterVR()}
-                //           />
-                //         )}
-                //       </>
-                //     )}
-                //     {entered && (
+                toolbarCenter={
+                  <>
+                    {watching && (
+                      <>
+                        <ToolbarButton
+                          icon={<EnterIcon />}
+                          label={<FormattedMessage id="toolbar.join-room-button" defaultMessage="Join Room" />}
+                          preset="accept"
+                          onClick={() => this.setState({ watching: false })}
+                        />
+                        {enableSpectateVRButton && (
+                          <ToolbarButton
+                            icon={<VRIcon />}
+                            preset="accent5"
+                            label={
+                              <FormattedMessage id="toolbar.spectate-in-vr-button" defaultMessage="Spectate in VR" />
+                            }
+                            onClick={() => this.props.scene.enterVR()}
+                          />
+                        )}
+                      </>
+                    )}
+                  </>
+                }   
+                //{entered && (
                 //       <>
                 //         <VoiceButtonContainer
                 //           scene={this.props.scene}
@@ -1679,33 +1644,33 @@ class UIRoot extends Component {
                 //       )}
                 //   </>
                 // }
-                // toolbarRight={
-                //   <>
-                //     {entered &&
-                //       isMobileVR && (
-                //         <ToolbarButton
-                //           icon={<VRIcon />}
-                //           preset="accept"
-                //           label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
-                //           onClick={() => exit2DInterstitialAndEnterVR(true)}
-                //         />
-                //       )}
-                //     {entered && (
-                //       <ToolbarButton
-                //         icon={<LeaveIcon />}
-                //         label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
-                //         preset="cancel"
-                //         onClick={() => {
-                //           this.showNonHistoriedDialog(LeaveRoomModal, {
-                //             destinationUrl: "/",
-                //             reason: LeaveReason.leaveRoom
-                //           });
-                //         }}
-                //       />
-                //     )}
-                //     <MoreMenuPopoverButton menu={moreMenu} />
-                //   </>
-                // }
+                toolbarRight={
+                  <>
+                    {entered &&
+                      isMobileVR && (
+                        <ToolbarButton
+                          icon={<VRIcon />}
+                          preset="accept"
+                          label={<FormattedMessage id="toolbar.enter-vr-button" defaultMessage="Enter VR" />}
+                          onClick={() => exit2DInterstitialAndEnterVR(true)}
+                        />
+                      )}
+                    {entered && (
+                      <ToolbarButton
+                        icon={<LeaveIcon />}
+                        label={<FormattedMessage id="toolbar.leave-room-button" defaultMessage="Leave" />}
+                        preset="cancel"
+                        onClick={() => {
+                          this.showNonHistoriedDialog(LeaveRoomModal, {
+                            destinationUrl: "/",
+                            reason: LeaveReason.leaveRoom
+                          });
+                        }}
+                      />
+                    )}
+                    <MoreMenuPopoverButton menu={moreMenu} />
+                  </>
+                }
               />
             )}
           </div>
